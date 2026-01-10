@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #a3b18a;
+  --color-primary-dark: #588157;
+  --color-background-light: #f3f4f6;
+  --color-background-dark: #050505;
+  --color-surface-dark: #121212;
+  --color-border-dark: #333333;
+  --color-text-light: #e6edf3;
+  --color-text-dim: #8b949e;
+
+  --font-mono: "Fira Code", monospace;
+  --font-sans: "Inter", sans-serif;
+  
+  --shadow-neon: 0 0 5px rgba(163, 177, 138, 0.2), 0 0 10px rgba(163, 177, 138, 0.1);
+  @keyframes scan {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0%); }
+}
+.animate-scan {
+  animation: scan 10s linear infinite;
+}
+}
+
+/* Custom Variant for Dark Mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* --- ANIMATIONS --- */
+
+/* 1. Subtle Breath for <> and {} */
+@keyframes symbol-breath {
+  0%, 100% { color: var(--color-text-dim); transform: scale(1); }
+  50% { color: var(--color-primary); transform: scale(1.1); }
+}
+.animate-symbol {
+  display: inline-block;
+  animation: symbol-breath 3s ease-in-out infinite;
+}
+
+/* 2. Floating Code Background */
+@keyframes float-up {
+  0% { transform: translateY(100vh); opacity: 0; }
+  10% { opacity: 0.05; }
+  90% { opacity: 0.05; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+.floating-code {
+  position: absolute;
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  opacity: 0.03; /* Very subtle */
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: float-up linear infinite;
+}
+
+/* Base Styles */
+body { @apply transition-colors duration-300; }
+
+/* Grid Background */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+:root:not(.dark) .bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+.typewriter-cursor::after {
+    content: "|";
+    animation: blink 1s step-start infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
