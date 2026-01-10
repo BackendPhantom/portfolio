@@ -7,12 +7,28 @@ interface JsonViewProps {
 
 export const JsonView = ({ data }: JsonViewProps) => {
   return (
-    <div className="w-full border border-gray-300 dark:border-border-dark p-0 bg-gray-50 dark:bg-[#0d1117] rounded-lg overflow-hidden">
-        {/* Using a dark theme for the code specifically to match the 'hacker' vibe */}
+    <div className="w-full h-full border border-gray-300 dark:border-border-dark bg-[#1e1e1e] rounded-lg overflow-hidden text-xs md:text-sm">
         <SyntaxHighlighter 
             language="json" 
             style={vscDarkPlus} 
-            customStyle={{ margin: 0, padding: '1.5rem', background: 'transparent' }}
+            wrapLongLines={true}
+            // 1. Force styling on the container code tag
+            codeTagProps={{
+                style: {
+                    wordBreak: 'break-all',
+                    whiteSpace: 'pre-wrap',
+                }
+            }}
+            // 2. Force styling on the pre tag (container)
+            customStyle={{ 
+              margin: 0, 
+              padding: '1.5rem', 
+              background: 'transparent',
+              height: '100%',
+              width: '100%',
+              overflowX: 'hidden', // Disable horizontal scroll
+              wordWrap: 'break-word',
+            }}
         >
             {JSON.stringify(data, null, 4)}
         </SyntaxHighlighter>
