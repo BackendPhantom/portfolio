@@ -5,7 +5,7 @@ import { Skills } from './components/Skills';     // New file
 import { Projects } from './components/Projects'; // New file
 import { Contact } from './components/Contact';
 import { Background } from './components/Background';
-import { portfolioData, type PortfolioData } from './data';           // New data structure
+import { portfolioData } from './data';           // New data structure
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
