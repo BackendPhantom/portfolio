@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PortfolioData, Project } from "../data";
+import type { PortfolioData, Project } from "../data";
 import { JsonView } from "./JsonView";
 
 // Modal Component

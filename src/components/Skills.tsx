@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PortfolioData } from "../data";
+import type { PortfolioData } from "../data";
 import { JsonView } from "./JsonView";
 
 export const Skills = ({ data }: { data: PortfolioData }) => {

@@ -1,4 +1,4 @@
-import { type Project } from "../data";
+import type { Project } from "../data";
 
 // 1. Restore the Skeleton Component
 export const ProjectSkeleton = () => (
