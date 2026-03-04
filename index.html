@@ -1,33 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>Sulaiman Olasubomi | Backend Software Engineer</title>
     <script>
-      (function() {
-        const storedTheme = localStorage.getItem('theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
-          document.documentElement.classList.add('dark');
+      (function () {
+        const storedTheme = localStorage.getItem("theme");
+        const systemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        if (storedTheme === "dark" || (!storedTheme && systemDark)) {
+          document.documentElement.classList.add("dark");
         } else {
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove("dark");
         }
       })();
     </script>
-    <meta name="description" content="Portfolio of Sulaiman Olasubomi, a Software Engineer specializing in Python, Django, and scalable backend architecture." />
-    <meta name="keywords" content="Software Engineer, Backend Developer, Python, Django, React, Portfolio" />
+    <meta
+      name="description"
+      content="Portfolio of Sulaiman Olasubomi, a Software Engineer specializing in Python, Django, and scalable backend architecture." />
+    <meta
+      name="keywords"
+      content="Software Engineer, Backend Developer, Python, Django, React, Portfolio" />
     <meta name="author" content="Sulaiman Olasubomi" />
-    
-    <meta property="og:title" content="Sulaiman Olasubomi - Software Engineer" />
-    <meta property="og:description" content="Check out my portfolio featuring backend architecture and API projects." />
-    <meta property="og:image" content="https://portfolio-nine-sandy-52.vercel.app/snapshot.png" />
-    <meta property="og:url" content="https://portfolio-nine-sandy-52.vercel.app" />
+
+    <meta
+      property="og:title"
+      content="Sulaiman Olasubomi - Software Engineer" />
+    <meta
+      property="og:description"
+      content="Check out my portfolio featuring backend architecture and API projects." />
+    <meta
+      property="og:image"
+      content="https://portfolio-nine-sandy-52.vercel.app/snapshot.png" />
+    <meta
+      property="og:url"
+      content="https://portfolio-nine-sandy-52.vercel.app" />
     <meta property="og:type" content="website" />
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
   </head>
   <body>
