@@ -1,137 +1,21 @@
-import { useState, useEffect } from "react";
-import { useUser } from "../../hooks/useUser";
-
-const MAX_MESSAGE_LENGTH = 500;
-const CONTACT_FORM_ENDPOINT = import.meta.env.VITE_CONTACT_FORM_ENDPOINT as
-  | string
-  | undefined;
-const CONTACT_FALLBACK_URL = import.meta.env.VITE_CONTACT_FALLBACK_URL as
-  | string
-  | undefined;
+import { useContact } from "../../hooks/useContact";
 
 export const Contact = () => {
-  const { user } = useUser();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
-  const [metrics, setMetrics] = useState({ uptime: "99.9%", latency: 24 });
-  const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
-  const [focusedField, setFocusedField] = useState<string | null>(null);
-  const contactEmail = user?.email || "sulaiman@example.com";
-
-  // Form validation
-  const isValidEmail = (email: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isFormValid =
-    formData.name.trim() &&
-    isValidEmail(formData.email) &&
-    formData.message.trim();
-
-  // Simulate Live Server Metrics
-  useEffect(() => {
-    const randomUptime = (99 + Math.random()).toFixed(2) + "%";
-
-    const interval = setInterval(() => {
-      const randomLatency = Math.floor(Math.random() * (85 - 20 + 1)) + 20;
-      setMetrics({ uptime: randomUptime, latency: randomLatency });
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isFormValid) return;
-
-    setStatus("sending");
-
-    const payload = {
-      ...formData,
-      target: contactEmail,
-      sentAt: new Date().toISOString(),
-      source: "portfolio-contact-form",
-    };
-
-    try {
-      if (CONTACT_FORM_ENDPOINT) {
-        const response = await fetch(CONTACT_FORM_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to submit message");
-        }
-      } else if (CONTACT_FALLBACK_URL) {
-        const url = new URL(CONTACT_FALLBACK_URL);
-        url.searchParams.set("name", formData.name);
-        url.searchParams.set("email", formData.email);
-        url.searchParams.set("message", formData.message);
-        url.searchParams.set("target", contactEmail);
-        window.open(url.toString(), "_blank", "noopener,noreferrer");
-      } else {
-        const subject = encodeURIComponent(
-          `Portfolio contact from ${formData.name}`
-        );
-        const body = encodeURIComponent(
-          `From: ${formData.name} <${formData.email}>\n\n${formData.message}`
-        );
-        window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-      }
-
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 4000);
-    } catch {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-    }
-  };
-
-  const socials = [
-    user?.github_url
-      ? {
-          name: "GitHub",
-          icon: "code",
-          url: user.github_url,
-          label: "GitHub",
-          color: "from-purple-500 to-pink-500",
-        }
-      : null,
-    user?.linkedin_url
-      ? {
-          name: "LinkedIn",
-          icon: "work",
-          url: user.linkedin_url,
-          label: "LinkedIn",
-          color: "from-blue-500 to-cyan-500",
-        }
-      : null,
-    {
-      name: "Email",
-      icon: "email",
-      url: `mailto:${contactEmail}`,
-      label: "E-mail",
-      color: "from-green-500 to-emerald-500",
-    },
-  ].filter(Boolean) as Array<{
-    name: string;
-    icon: string;
-    url: string;
-    label: string;
-    color: string;
-  }>;
-
-  // Suppress unused variable warnings (used in JSX conditionally)
-  void hoveredSocial;
+  const {
+    formData,
+    setFormData,
+    status,
+    statusMessage,
+    metrics,
+    setHoveredSocial,
+    focusedField,
+    setFocusedField,
+    isFormValid,
+    isValidEmail,
+    handleSubmit,
+    socials,
+    MAX_MESSAGE_LENGTH,
+  } = useContact();
 
   return (
     <div className="w-full flex justify-center px-4 py-8 animate-in fade-in zoom-in duration-500">
@@ -416,6 +300,25 @@ export const Contact = () => {
                   {!isFormValid && status === "idle" && (
                     <p className="text-center text-xs text-gray-500 mt-2">
                       Fill all fields to enable submission
+                    </p>
+                  )}
+
+                  {/* BE status message */}
+                  {statusMessage && status === "success" && (
+                    <p className="flex items-center gap-2 text-xs text-green-600 dark:text-green-400 bg-green-500/10 border border-green-500/20 rounded-lg px-4 py-2.5 mt-2 font-mono">
+                      <span className="material-icons text-[14px] shrink-0">
+                        check_circle
+                      </span>
+                      {statusMessage}
+                    </p>
+                  )}
+
+                  {statusMessage && status === "error" && (
+                    <p className="flex items-center gap-2 text-xs text-red-500 dark:text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-2.5 mt-2 font-mono">
+                      <span className="material-icons text-[14px] shrink-0">
+                        error_outline
+                      </span>
+                      {statusMessage}
                     </p>
                   )}
                 </form>
