@@ -85,6 +85,7 @@ export function Projects() {
       </div>
 
       {/* --- OTHER PROJECTS --- */}
+      {data.otherProjects && data.otherProjects.length > 0 && (
       <div className="flex flex-col gap-6 pt-8 md:pt-12">
         <h3 className="text-[14px] font-bold uppercase tracking-widest text-[#5F5E5E] dark:text-[#A3A3A3] mb-2 border-b border-[#E5E2E1] dark:border-[#333333] pb-4">
           Archived / Minor Modules
@@ -140,7 +141,7 @@ export function Projects() {
             </div>
           ))}
         </div>
-      </div>
+      </div>)}
 
     </section>
   );

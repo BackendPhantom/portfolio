@@ -13,47 +13,60 @@ export function Skills() {
   const rightColumnSkills = data.skills.filter((_, index) => index % 2 !== 0);
 
   // Extracted render function utilizing the globally imported types
-  const renderSkillGroup = (group: SkillGroup) => (
-    <div key={group.category} className="flex flex-col">
-      {/* Minimalist Header with solid underline */}
-      <h3 className="text-xl md:text-[22px] font-semibold text-[#1C1B1B] dark:text-[#FDF8F8] pb-3 border-b-[1.5px] border-[#1C1B1B] dark:border-[#FDF8F8]">
-        {group.category}
-      </h3>
+  // Extracted render function utilizing the globally imported types
+  const renderSkillGroup = (group: SkillGroup) => {
+    // 1. Filter out any items where the name is missing or is just empty spaces
+    const validSkills = group.items.filter(
+      (skill: SkillItem) => skill.name && skill.name.trim() !== ''
+    );
 
-      {/* List Items */}
-      <ul className="mt-6 flex flex-col gap-5">
-        {group.items.map((skill: SkillItem) => (
-          <li key={skill.name} className="flex items-center gap-4">
-            
-            {/* Custom Triangle Bullet */}
-            <svg 
-              width="6" 
-              height="8" 
-              viewBox="0 0 6 8" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="text-[#1C1B1B] dark:text-[#FDF8F8] shrink-0"
-            >
-              <path d="M0 0L6 4L0 8V0Z" fill="currentColor"/>
-            </svg>
-            
-            {/* Skill Name */}
-            <span className="text-[15px] md:text-base text-[#5F5E5E] dark:text-[#A3A3A3] font-medium tracking-wide">
-              {skill.name}
-            </span>
-            
-            {/* Optional Status Tag */}
-            {skill.status && (
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b949e] dark:text-[#5F5E5E] ml-1">
-                ({skill.status})
+    // 2. If the category has no valid skills after filtering, do not render the block
+    if (validSkills.length === 0) {
+      return null;
+    }
+
+    return (
+      <div key={group.category} className="flex flex-col">
+        {/* Minimalist Header with solid underline */}
+        <h3 className="text-xl md:text-[22px] font-semibold text-[#1C1B1B] dark:text-[#FDF8F8] pb-3 border-b-[1.5px] border-[#1C1B1B] dark:border-[#FDF8F8]">
+          {group.category}
+        </h3>
+
+        {/* List Items - Now strictly mapping over validated data */}
+        <ul className="mt-6 flex flex-col gap-5">
+          {validSkills.map((skill: SkillItem) => (
+            <li key={skill.name} className="flex items-center gap-4">
+              
+              {/* Custom Triangle Bullet */}
+              <svg 
+                width="6" 
+                height="8" 
+                viewBox="0 0 6 8" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="text-[#1C1B1B] dark:text-[#FDF8F8] shrink-0"
+              >
+                <path d="M0 0L6 4L0 8V0Z" fill="currentColor"/>
+              </svg>
+              
+              {/* Skill Name */}
+              <span className="text-[15px] md:text-base text-[#5F5E5E] dark:text-[#A3A3A3] font-medium tracking-wide">
+                {skill.name}
               </span>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
+              
+              {/* Optional Status Tag */}
+              {skill.status && (
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b949e] dark:text-[#5F5E5E] ml-1">
+                  ({skill.status})
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+  
   return (
     <section 
       id="skills" 

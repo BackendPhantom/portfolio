@@ -33,16 +33,6 @@ export function Hero() {
     >
       {/* --- HEADER SECTION --- */}
       <div className="max-w-3xl flex flex-col gap-6 md:gap-8">
-        
-        <div className="flex items-center gap-3 w-fit px-3 py-1.5 rounded-full border border-[#E5E2E1] dark:border-[#333333] bg-[#FFFFFF] dark:bg-[#232121] shadow-sm">
-          <div className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </div>
-          <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-widest text-[#5F5E5E] dark:text-[#A3A3A3] font-semibold">
-            Sys_Online • Region: {personalInfo.region}
-          </span>
-        </div>
 
         <h1 className="text-4xl md:text-6xl lg:text-[72px] font-bold tracking-tight text-[#1C1B1B] dark:text-[#FDF8F8] leading-[1.05]">
           Architecting highly available, scalable systems.
