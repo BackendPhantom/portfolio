@@ -1,44 +1,48 @@
 import { useState, useEffect } from 'react';
 import { type PortfolioData } from '../types';
 
-interface UsePortfolioDataResult {
-  data: PortfolioData | null;
-  isLoading: boolean;
-  error: string | null;
-}
-
-export function usePortfolioData(): UsePortfolioDataResult {
+export function usePortfolioData() {
   const [data, setData] = useState<PortfolioData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchData = async () => {
       try {
-        // Cache-busting: Appending a unique timestamp forces the browser to fetch fresh data
-        const timestamp = new Date().getTime();
-        const response = await fetch(`/data.json?t=${timestamp}`, {
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
-          }
-        });
+        setIsLoading(true);
+        
+        // Stable URL allows the browser to coalesce simultaneous requests 
+        // and utilize standard HTTP caching
+        const response = await fetch('/data.json');
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        const jsonData = (await response.json()) as PortfolioData;
-        setData(jsonData);
-      } catch (e) {
-        setError(e instanceof Error ? e.message : 'An unknown error occurred');
+        const jsonData: PortfolioData = await response.json();
+        
+        if (isMounted) {
+          setData(jsonData);
+          setError(null);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err instanceof Error ? err : new Error('Failed to fetch data'));
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     };
 
     fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return { data, isLoading, error };

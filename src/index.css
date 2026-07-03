@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* 1. Global Seamless Theme Transition
   Forces all elements to animate color changes smoothly when toggling light/dark mode
@@ -15,7 +18,7 @@
 /* Add this near the top of your index.css to ensure smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem; /* This prevents the fixed navbar from overlapping section headers */
+  scroll-padding-top: 4rem; /* This prevents the fixed navbar from overlapping section headers */
 }
 /* 2. Custom Scrollbar (Used in the Navbar for mobile overflow) 
 */
