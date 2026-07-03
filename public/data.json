@@ -1,0 +1,144 @@
+{
+  "personalInfo": {
+    "name": "Oladunjoye Olasubomi",
+    "title": "Backend Systems Architect",
+    "region": "af-west (Lagos)",
+    "summary": "I design and build robust APIs, microservices, and distributed infrastructure where precision, performance, and resilience are non-negotiable.",
+    "bio": "Passionate about idempotency, eventual consistency, and squeezing every millisecond out of a response time. I view code as a structural material and strive for clean, documented, and testable architectures. I build systems that are designed to scale gracefully under load.",
+    "currentProcess": "compiling multi-tenant schema architecture...",
+    "environmentStack": ["ENV: Linux", "FW: Django / DRF", "DB: PostgreSQL"]
+  },
+  "engineeringTenets": [
+    {
+      "id": "architecture",
+      "icon": "dns",
+      "label": "Architecture",
+      "title": "Schema Isolation",
+      "description": "Designing strict data boundaries and scalable multi-tenant database models."
+    },
+    {
+      "id": "api",
+      "icon": "api",
+      "label": "API Design",
+      "title": "RESTful Precision",
+      "description": "Building predictable, secure, and well-documented endpoints using Django & DRF."
+    },
+    {
+      "id": "rnd",
+      "icon": "memory",
+      "label": "Active R&D",
+      "title": "Enterprise Scalability",
+      "description": "Expanding backend capabilities with ASP.NET Core and exploring Rust for stream processing."
+    },
+    {
+      "id": "ai-velocity",
+      "icon": "bolt",
+      "label": "Workflow",
+      "title": "AI-Augmented Velocity",
+      "description": "Leveraging LLMs and AI-assisted tooling to accelerate boilerplate generation, validate architectural decisions, and rapidly scale test coverage."
+    }
+  ],
+ "featuredProjects": [
+    {
+      "id": "multi-tenant-saas",
+      "title": "Multi-Tenant SaaS Architecture",
+      "description": "A highly scalable backend architecture featuring strict schema isolation, dynamic database model management via a 'Builder' module, and robust tenant state management.",
+      "stack": ["Django", "PostgreSQL", "REST Framework", "Docker"],
+      "githubUrl": "https://github.com/yourusername/multi-tenant-saas",
+      "liveLink": {
+        "url": "https://api.yourdomain.com/docs",
+        "label": "API Docs"
+      }
+    },
+    {
+      "id": "portfolio-api",
+      "title": "Portfolio Catalog API",
+      "description": "A RESTful API built to dynamically serve developer portfolio data, manage project catalogs, and log system metrics with optimized query counts (O(1) database hits via ORM).",
+      "stack": ["Python", "Django DRF", "SQLite", "Git Actions"],
+      "githubUrl": "https://github.com/yourusername/portfolio-api"
+    }
+  ],
+  "otherProjects": [
+    {
+      "id": "csharp-auth",
+      "title": "Identity API Service",
+      "description": "An exploratory microservice implementing JWT authentication and role-based access control.",
+      "stack": ["C#", "ASP.NET Core"],
+      "githubUrl": "https://github.com/yourusername/csharp-auth",
+       "liveLink": {
+        "url": "https://api.yourdomain.com/docs",
+        "label": "API Docs"
+      }
+    },
+    {
+      "id": "linux-scripts",
+      "title": "SysAdmin Utilities",
+      "description": "A collection of bash scripts for automating server repository fixes and local development environments.",
+      "stack": ["Bash", "Linux"],
+      "githubUrl": "https://github.com/yourusername/linux-scripts"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        { "name": "Go" },
+        { "name": "Python" },
+        { "name": "TypeScript" },
+        { "name": "C#" },
+        { "name": "Rust", "status": "LEARNING" }
+      ]
+    },
+    {
+      "category": "Databases",
+      "items": [
+        { "name": "PostgreSQL" },
+        { "name": "Redis" },
+        { "name": "MongoDB" },
+        { "name": "Elasticsearch" }
+      ]
+    },
+    {
+      "category": "Infrastructure",
+      "items": [
+        { "name": "Docker" },
+        { "name": "Kubernetes" },
+        { "name": "AWS (EC2, S3, RDS)" },
+        { "name": "Terraform" }
+      ]
+    },
+    {
+      "category": "Architecture",
+      "items": [
+        { "name": "Microservices" },
+        { "name": "RESTful API Design" },
+        { "name": "Event-Driven Systems" },
+        { "name": "CI/CD Pipelines" }
+      ]
+    },
+    {
+      "category": "Workflow Augmentation",
+      "items": [
+        { "name": "AI-Assisted Development" },
+        { "name": "Cursor / GitHub Copilot" },
+        { "name": "LLM Prompting & Context Management" },
+        { "name": "Automated Testing via AI" }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "olasubomi@example.com",
+    "socials": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/yourusername",
+        "icon": "code"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/yourusername",
+        "icon": "work"
+      }
+    ]
+  }
+}
