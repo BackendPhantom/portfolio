@@ -66,7 +66,10 @@
       "githubUrl": "https://github.com/BackendPhantom/novelbin"
     }
   ],
-  "skills": [
+  "skills": [{
+      "category": "Frameworks & Libraries",
+      "items": [{ "name": "Django" }, { "name": "Django REST Framework" }]
+    },
     {
       "category": "Languages",
       "items": [
@@ -76,14 +79,8 @@
         { "name": "JavaScript" }
       ]
     },
-    {
-      "category": "Frameworks & Libraries",
-      "items": [{ "name": "Django" }, { "name": "Django REST Framework" }]
-    },
-    {
-      "category": "Databases",
-      "items": [{ "name": "PostgreSQL" }, { "name": "Redis" }]
-    },
+    
+   
     {
       "category": "Architecture & Backend",
       "items": [
@@ -95,6 +92,9 @@
         { "name": "Event-Driven Systems" },
         { "name": "Microservices", "status": "familiar" }
       ]
+    }, {
+      "category": "Databases",
+      "items": [{ "name": "PostgreSQL" }, { "name": "Redis" }]
     },
     {
       "category": "Developer Tools",

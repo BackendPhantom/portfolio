@@ -14,7 +14,7 @@ export function Contact() {
     e.preventDefault();
     if (!pingInput.trim()) return;
     
-    const subject = encodeURIComponent("System Handshake Request");
+    const subject = encodeURIComponent("Contact Request from Portfolio");
     const body = encodeURIComponent(`> ping message payload:\n\n${pingInput}\n\n`);
     window.location.href = `mailto:${data.contact.email}?subject=${subject}&body=${body}`;
     
@@ -27,23 +27,23 @@ export function Contact() {
       id="contact" 
       className="w-full px-4 md:px-6 max-w-[1120px] mx-auto pt-16 md:pt-24 flex flex-col gap-12 md:gap-16"
     >
-      {/* Section Header */}
+      {/* --- Section Header (Updated for clarity and professionalism) --- */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
           <div className="h-[2px] w-8 bg-[#1C1B1B] dark:bg-[#FDF8F8]"></div>
           <span className="text-[10px] font-bold uppercase tracking-widest text-[#1C1B1B] dark:text-[#FDF8F8]">
-            Handshake Protocol
+            Reach Out
           </span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#1C1B1B] dark:text-[#FDF8F8]">
-          Open a connection.
+          Let's start a conversation.
         </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
         
-        {/* --- LEFT: The Terminal Ping Interface (Fixed Height Stretching) --- */}
-        <div className="lg:col-span-7 bg-[#1C1B1B] dark:bg-[#000000] rounded-[24px] p-6 md:p-8 flex flex-col h-fit self-start shadow-2xl border border-transparent dark:border-[#333333] transition-colors duration-300">
+        {/* --- LEFT: The Terminal Ping Interface (Changed to h-full for matched height) --- */}
+        <div className="lg:col-span-7 bg-[#1C1B1B] dark:bg-[#000000] rounded-[24px] p-6 md:p-8 flex flex-col h-full shadow-2xl border border-transparent dark:border-[#333333] transition-colors duration-300">
           
           {/* Terminal Header */}
           <div className="flex items-center justify-between border-b border-[#333333] pb-4 mb-6">
@@ -57,13 +57,16 @@ export function Contact() {
             </span>
           </div>
 
-          <div className="flex flex-col gap-4 font-mono text-[13px] md:text-[14px] text-[#A3A3A3]">
-            <p>Initiating handshake sequence...</p>
-            <p className="text-emerald-400">Resolving target: {data.personalInfo.name}</p>
-            <p>Enter payload data below to transmit an email directly to the system architect.</p>
+          {/* Terminal Body with flex-grow to absorb empty space */}
+          <div className="flex-grow flex flex-col justify-between font-mono text-[13px] md:text-[14px] text-[#A3A3A3]">
+            <div className="flex flex-col gap-4">
+              <p>Initiating connection sequence...</p>
+              <p className="text-emerald-400">Resolving target: {data.personalInfo.name}</p>
+              <p>Enter your message below to transmit an email directly to my inbox.</p>
+            </div>
 
-            {/* Interactive Terminal Form */}
-            <form onSubmit={executePing} className="pt-6 flex flex-col gap-4">
+            {/* Interactive Terminal Form (mt-auto anchors it to the bottom if stretched) */}
+            <form onSubmit={executePing} className="pt-6 flex flex-col gap-4 mt-auto">
               <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                 <span className="text-emerald-400 shrink-0">guest@sys-arch:~$</span>
                 <input
@@ -81,14 +84,14 @@ export function Contact() {
                 disabled={!pingInput.trim()}
                 className="w-fit border border-[#333333] text-[#A3A3A3] hover:text-[#FDF8F8] hover:border-[#FDF8F8] disabled:opacity-50 disabled:hover:border-[#333333] disabled:hover:text-[#A3A3A3] transition-colors px-4 py-2 text-[11px] uppercase tracking-widest font-sans font-bold mt-2 rounded-[8px]"
               >
-                Execute Ping
+                Send Message
               </button>
             </form>
           </div>
         </div>
 
-{/* --- RIGHT: Direct Bento Links (True 2x2 Grid Architecture) --- */}
-        <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 h-fit self-start">
+        {/* --- RIGHT: Direct Bento Links (Changed to h-full for matched height) --- */}
+        <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 h-full">
           
           {/* Direct Email Card (Spans both columns) */}
           <a 

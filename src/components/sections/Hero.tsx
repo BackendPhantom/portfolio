@@ -31,8 +31,8 @@ export function Hero() {
       id="home" 
       className="w-full px-4 md:px-6 max-w-[1120px] mx-auto mt-8 md:mt-16 flex flex-col gap-16 md:gap-24"
     >
-      {/* --- HEADER SECTION --- */}
-      <div className="max-w-3xl flex flex-col gap-6 md:gap-8">
+      {/* --- HEADER SECTION (Centered Architecture) --- */}
+      <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto gap-6 md:gap-8 pt-8 md:pt-12">
 
         <h1 className="text-4xl md:text-6xl lg:text-[72px] font-bold tracking-tight text-[#1C1B1B] dark:text-[#FDF8F8] leading-[1.05]">
           Architecting highly available, scalable systems.
@@ -42,7 +42,7 @@ export function Hero() {
           {personalInfo.summary}
         </p>
         
-        <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-2">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 mt-2 w-full sm:w-auto">
           <Button href="#projects" variant="primary">
             View Systems Logs
           </Button>
@@ -51,7 +51,7 @@ export function Hero() {
           </Button>
         </div>
 
-        <div className="mt-2 flex items-center gap-2 font-mono text-[11px] md:text-[12px] text-[#5F5E5E] dark:text-[#A3A3A3]">
+        <div className="mt-2 flex items-center justify-center gap-2 font-mono text-[11px] md:text-[12px] text-[#5F5E5E] dark:text-[#A3A3A3]">
           <span className="text-[#1C1B1B] dark:text-[#FDF8F8]">&gt;</span>
           <span>current_process: {personalInfo.currentProcess}</span>
           <span className="animate-pulse text-[#1C1B1B] dark:text-[#FDF8F8]">█</span>
@@ -69,64 +69,68 @@ export function Hero() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-  
-  {/* LEFT: Engineering Tenets (Balanced to a 2x2 grid for 4 items) */}
-  <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-    {engineeringTenets.map((tenet) => (
-      <div 
-        key={tenet.id} 
-        className="bg-[#FFFFFF] dark:bg-[#232121] border border-[#E5E2E1] dark:border-[#333333] rounded-[24px] p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md"
-      >
-        <div>
-          <div className="flex justify-between items-start mb-4">
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-[#5F5E5E] dark:text-[#A3A3A3]">
-              {tenet.label}
-            </span>
-            <span className="material-symbols-outlined text-[#1C1B1B] dark:text-[#FDF8F8] text-[20px] opacity-70">
-              {tenet.icon}
-            </span>
+          
+          {/* LEFT: Engineering Tenets (Balanced to a 2x2 grid for 4 items) */}
+          <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            {engineeringTenets.map((tenet) => (
+              <div 
+                key={tenet.id} 
+                className="bg-[#FFFFFF] dark:bg-[#232121] border border-[#E5E2E1] dark:border-[#333333] rounded-[24px] p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md"
+              >
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#5F5E5E] dark:text-[#A3A3A3]">
+                      {tenet.label}
+                    </span>
+                    <span className="material-symbols-outlined text-[#1C1B1B] dark:text-[#FDF8F8] text-[20px] opacity-70">
+                      {tenet.icon}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold tracking-tight text-[#1C1B1B] dark:text-[#FDF8F8] mb-2 leading-snug">
+                    {tenet.title}
+                  </h3>
+                </div>
+                <p className="text-[12px] text-[#5F5E5E] dark:text-[#A3A3A3] leading-relaxed">
+                  {tenet.description}
+                </p>
+              </div>
+            ))}
           </div>
-          <h3 className="text-lg font-bold tracking-tight text-[#1C1B1B] dark:text-[#FDF8F8] mb-2 leading-snug">
-            {tenet.title}
-          </h3>
+
+          {/* RIGHT: bio.md (Restored to full height with dynamic internal spacing) */}
+          <div className="md:col-span-5 bg-[#1C1B1B] dark:bg-[#FDF8F8] rounded-[24px] p-6 md:p-8 flex flex-col h-full shadow-2xl transition-colors duration-300">
+            
+            {/* Top: Terminal Header (Shrinks to fit) */}
+            <div className="shrink-0 flex items-center gap-3 border-b border-[#333333] dark:border-[#E5E2E1] pb-4 transition-colors duration-300">
+              <span className="material-symbols-outlined text-[#FDF8F8] dark:text-[#1C1B1B] text-[18px]">
+                terminal
+              </span>
+              <span className="font-mono text-[12px] text-[#FDF8F8] dark:text-[#1C1B1B] uppercase tracking-wider font-semibold">
+                cat bio.md
+              </span>
+            </div>
+            
+            {/* Middle: Bio Text (Flex-grow absorbs empty space to vertically center the text) */}
+            <div className="flex-grow flex items-center py-6 md:py-8">
+              <p className="text-[#FDF8F8] dark:text-[#1C1B1B] text-[14px] md:text-[15px] leading-relaxed font-sans">
+                {personalInfo.bio}
+              </p>
+            </div>
+
+            {/* Bottom: Environment Tags (Anchored to bottom) */}
+            <div className="shrink-0 flex flex-wrap gap-2 mt-auto">
+              {personalInfo.environmentStack.map((tag) => (
+                <span 
+                  key={tag} 
+                  className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-[#333333] dark:bg-[#E5E2E1] text-[#FDF8F8] dark:text-[#1C1B1B] transition-colors duration-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
         </div>
-        <p className="text-[12px] text-[#5F5E5E] dark:text-[#A3A3A3] leading-relaxed">
-          {tenet.description}
-        </p>
-      </div>
-    ))}
-  </div>
-
-  {/* RIGHT: bio.md (Added h-fit and self-start to stop vertical stretching) */}
-  <div className="md:col-span-5 bg-[#1C1B1B] dark:bg-[#FDF8F8] rounded-[24px] p-6 md:p-8 flex flex-col justify-between h-fit self-start shadow-2xl transition-colors duration-300">
-    <div>
-      <div className="flex items-center gap-3 border-b border-[#333333] dark:border-[#E5E2E1] pb-4 mb-4 transition-colors duration-300">
-        <span className="material-symbols-outlined text-[#FDF8F8] dark:text-[#1C1B1B] text-[18px]">
-          terminal
-        </span>
-        <span className="font-mono text-[12px] text-[#FDF8F8] dark:text-[#1C1B1B] uppercase tracking-wider font-semibold">
-          cat bio.md
-        </span>
-      </div>
-      
-      <p className="text-[#FDF8F8] dark:text-[#1C1B1B] text-[14px] md:text-[15px] leading-relaxed font-sans mb-8">
-        {personalInfo.bio}
-      </p>
-    </div>
-
-    <div className="flex flex-wrap gap-2 mt-auto">
-      {personalInfo.environmentStack.map((tag) => (
-        <span 
-          key={tag} 
-          className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-[#333333] dark:bg-[#E5E2E1] text-[#FDF8F8] dark:text-[#1C1B1B] transition-colors duration-300"
-        >
-          {tag}
-        </span>
-      ))}
-    </div>
-  </div>
-
-</div>
       </div>
     </section>
   );
